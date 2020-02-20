@@ -1,0 +1,159 @@
+﻿@page
+@model Admin.Pages.PolicySetup.PolicysModel
+@{
+    ViewData["Title"] = "Policys";
+}
+
+<main class="my-form">
+    <div class="cotainer" style="margin-left:20px">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header" style="background-color:cadetblue; font-weight:800; color:white">Policy</div>
+                    <div class="card-body">
+                        <form method="post">
+                            <input type="hidden" asp-for="Policy.ID" />
+
+                            <div class="row" style="margin-top:30px">
+                                <div class="form-group">
+                                    <div class="form-inline" style="margin-left:20px">
+                                        <label asp-for="Policy.Member_Circle">Member circle out (cut off) at the completion of stage</label><span style="width:30px"></span>
+
+                                        <select asp-for="Policy.Member_Circle" id="Select1" class="form-control" style="height:35px">
+
+                                            @for (var i = 1; i < 21; i++)
+                                            {
+
+                                                <option>@(i)</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="form-inline" style="margin-left:20px">
+                                        <input asp-for="Policy.Allowcheck" type="checkbox" /><span style="width:30px"></span>
+                                        <label>Allow reactivation of circle out (cut off) member after</label><span style="width:20px"></span>
+                                        <select asp-for="Policy.Allow_Circle" id="Select1" class="form-control" style="height:35px">
+
+                                            @for (var i = 1; i < 21; i++)
+                                            {
+
+                                                <option>@(i)</option>
+                                            }
+                                        </select>
+                                        Months
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="form-inline" style="margin-left:20px">
+                                        <input asp-for="Policy.Chargecheck" id="Checkbox1" type="checkbox" /><span style="width:30px"></span>
+                                        <label asp-for="Policy.Chargecheck">
+                                            Charge reactivation fees for reactivated circle out (cut off) member
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="form-inline" style="margin-left:20px">
+                                        <input asp-for="Policy.Reusecheck" id="Checkbox1" type="checkbox" /><span style="width:30px"></span>
+                                        <label asp-for="Policy.Reusecheck">
+                                            Reuse former membership number for reactivated circle out (cut off) member
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="form-inline" style="margin-left:20px">
+                                        <input asp-for="Policy.Disallowcheck" id="Checkbox1" type="checkbox" /><span style="width:30px"></span>
+                                        <label asp-for="Policy.Disallowcheck">
+                                            Disallow cross line registration by member (registering more than one leg)
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="form-inline" style="margin-left:20px">
+                                        <label asp-for="Policy.Maximum_mem">
+                                            Maximum number of times a member can register
+                                        </label><span style="width:30px"></span>
+                                        <select asp-for="Policy.Maximum_mem" id="Select1" class="form-control" style="height:30px">
+                                            @for (var i = 1; i < 21; i++)
+                                            {
+
+                                                <option>@(i)</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="form-inline" style="margin-left:20px">
+                                        <label asp-for="Policy.Pay_mem">
+                                            Pay member Bonus
+                                        </label><span style="width:30px"></span>
+                                        <select asp-for="Policy.Pay_mem" id="Select1" class="form-control" style="height:35px">
+                                            <option>Daily</option>
+                                            <option>Weekly</option>
+                                            <option>Monthly</option>
+                                            <option>Yearly</option>
+
+
+                                        </select><span style="width:10px"></span>
+                                        <label asp-for="Policy.Every"> Every</label><span style="width:30px"></span>
+                                        <select asp-for="Policy.Every" id="Select1" class="form-control" style="height:35px">
+                                            <option>Sunday</option>
+                                            <option>Tuesday</option>
+                                            <option>Wednesday</option>
+                                            <option>Thursday</option>
+                                            <option>Friday</option>
+                                            <option>Saturday</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="form-inline" style="margin-bottom:30px">
+                                        <label asp-for="Policy.Member_num" style="margin-left:20px">
+                                            Membership number should be
+                                        </label><span style="width:30px"></span>
+                                        <select asp-for="Policy.Member_num" id="Select1" class="form-control" style="height:35px">
+                                            @for (var i = 1; i < 21; i++)
+                                            {
+
+                                                <option>@(i)</option>
+                                            }
+
+                                        </select><span style="width:20px"></span>
+                                        digit code
+
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="form-group" style="text-align:center;  font-weight:800">
+                                <input type="submit" value="SUBMIT" style="width:300px; font-size:larger" class="btn btn-primary" />
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+

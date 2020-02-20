@@ -1,0 +1,144 @@
+﻿@page
+@model Admin.StaffUseRegistrationModel
+@{
+    ViewData["Title"] = "StaffUseRegistration";
+}
+
+
+
+
+
+@*<div class="content">*@
+<form method="post" enctype="multipart/form-data">
+    <main class="my-form">
+        <div class="cotainer" style="margin-left:20px">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header" style="background-color:cadetblue; font-weight:800; color:white">Register Users</div>
+                        <div class="card-body">
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                            <div class="form-group">
+                                <div class="form-inline">
+                                    <label asp-for="StaffUserReg.Id" class="control-label">Staff ID</label>
+                                    <span class="frmspace" style="width:50px"></span>
+                                    <input id="Staffs" asp-for="StaffUserReg.Id" type="text" class="form-control" style="width:200px; height:35px"  id="StaffID" name="Staff ID">
+                                    <span class="frmspace" style="width:10px"></span>
+                                    <button type="button" onclick="search()" value="Search"  Text=""
+                                            class="btn btn-primary search" style="width:80px; font-size:larger; height:30px">
+                                        Search
+                                    </button>
+                                    <span asp-validation-for="StaffUserReg.Id" class="text-danger"></span>
+                                    <input id="key" type="hidden" asp-for="StaffUserReg.Id" />
+                                </div>
+                            </div>
+                       
+                        <div class="form-group">
+                            <div class="form-inline" style="width:900px">
+                                <label asp-for="StaffUserReg.Title" class="control-label">Title</label>
+                                <span class="frmspace" style="width:70px"></span>
+                                <select id="Title" asp-for="StaffUserReg.Title" class="form-control" style="width:80px; height:35px" ;>
+
+                                    <option>Mr</option>
+                                    <option>Mrs</option>
+                                    <option></option>
+                                </select>
+                                <span class="frmspace" style="width:10px"></span>
+                                <input asp-for="StaffUserReg.Suspended" id="Checkboxs" type="checkbox" />
+                                <span class="frmspace" style="width:10px"></span>
+                                <label asp-for="StaffUserReg.Suspended" style="width:80px">Suspended</label>
+                                <span class="frmspace" style="width:10px"></span>
+
+                                <label asp-for="StaffUserReg.DateSuspended" for="Title">Date Suspended</label>
+                                <span class="frmspace" style="width:10px"></span>
+                                <input id="Datetimes" asp-for="StaffUserReg.DateSuspended" type="datetime-local" class="form-control" style="width:200px; height:35px">
+                                <span asp-validation-for="StaffUserReg.DateSuspended" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-inline">
+                                <label asp-for="StaffUserReg.Surname" class="control-label">SurName</label>
+                                <span class="frmspace" style="width:35px"></span>
+                                <input id="Surname" asp-for="StaffUserReg.Surname" type="text" class="form-control" style="width:300px; height:35px">
+                                <span asp-validation-for="StaffUserReg.Surname" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-inline">
+                                <label asp-for="StaffUserReg.OtherNames" class="control-label">Other Names</label>
+                                <span class="frmspace" style="width:15px"></span>
+                                <input id="Othernames" asp-for="StaffUserReg.OtherNames" type="text" class="form-control" style="width:300px; height:35px">
+                                <span asp-validation-for="StaffUserReg.OtherNames" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-inline">
+                                <label asp-for="StaffUserReg.Department" class="control-label">Department</label>
+                                <span class="frmspace" style="width:15px"></span>
+                                <select id="Department" asp-for="StaffUserReg.Department" class="form-control" style="width:150px; height:35px" ;>
+
+                                    <option>Marketing</option>
+                                    <option>Office</option>
+                                    <option></option>
+                                </select>
+                                <span asp-validation-for="StaffUserReg.Department" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group" style="text-align:center;  font-weight:800">
+                            <input type="submit" value="SUBMIT" style="width:300px; font-size:larger" class="btn btn-primary" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+</form>
+                        <script>
+                            function search() {
+
+                                //alert("hello");
+                                var element = document.getElementById('Staffs').value;
+                                var key = Number(element);
+
+                                console.log(key);
+
+
+
+                                $.ajax({
+
+                                    url: 'https://localhost:5001/api/StaffUserRegs/' + key,
+                                    type: "GET",
+                                    contentType: "application/json",
+                                    error: function () {
+                                        alert('An error occured during search.');
+                                    },
+
+                                    success: function (staffReg) {
+                                        setFields(staffReg);
+
+                                    }
+                                });
+
+
+
+                            }
+
+                            function setFields(staffReg) {
+                                console.log(staffReg.title);
+                                document.getElementById('Surname').value = staffReg.surname;
+                                document.getElementById('Department').value = staffReg.department;
+                                document.getElementById('Othernames').value = staffReg.otherNames;
+                                document.getElementById('Title').value = staffReg.title;
+                                document.getElementById('Datetimes').value = staffReg.dateSuspended;
+                                document.getElementById('Checkboxs').value = staffReg.suspended;
+
+                            }
+
+
+                        </script>
+                        @*</div>*@
